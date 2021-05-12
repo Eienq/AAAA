@@ -7,13 +7,16 @@ exports.run = async (client, message, args) => {
   const kayıtkanalı = await jkood.Kayıtkanal
   if(kayıtkanalı == null) return message.channel.send('');
   if (message.channel.id !== kayıtkanalı) return message.channel.send(`Kayıt İşlemlerini Sadece Ayarlanmış Kayıt Kanalından Yapabilirsiniz. (<#${kayıtkanalı}>)`);
-  const erkekrol = await jkood.Kayıtkanal
-  const alınacakrol = await jkood.Kayıtkanal
-  const kayıtlog = await jkood.Kayıtkanal
-  
   if(!message.member.hasPermission(jkood.KayitYetkilisi)) {
     return message.channel.send("Bu Komutu Kullanabilmek İçin Gerekli Yetkiye Sahip Değilsin!");
   } else {
+  const erkekrol = await jkood.ErkekRol
+  const alınacakrol = await jkood.AlinacakRol
+  const kayıtlog = await jkood.KayıtLog
+  if(!erkekrol) return message.reply(`Erkek Rolü Ayarlanmamış!`)
+  if(!alınacakrol) return message.reply(`Alınacak Rol Ayarlanmamış!`)
+  if(!kayıtlog) return message.reply(`Kayıt Log Ayarlanmamış!`)
+    
     let member = message.mentions.users.first() || client.users.cache.get(args.join(' '))
       if(!member) return message.channel.send("Bir kullanıcı girin.")
     const user = message.guild.member(member)
