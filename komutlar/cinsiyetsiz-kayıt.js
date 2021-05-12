@@ -10,7 +10,7 @@ exports.run = async (client, message, args) => {
   if(!message.member.hasPermission(jkood.KayitYetkilisi)) {
     return message.channel.send("Bu Komutu Kullanabilmek İçin Gerekli Yetkiye Sahip Değilsin!");
   } else {
-  const erkekrol = await jkood.ErkekRol
+  const erkekrol = await jkood.CinsiyetsizKayıtVerilecekRol
   const alınacakrol = await jkood.AlinacakRol
   const kayıtlog = await jkood.KayıtLog
   if(!erkekrol) return message.reply(`Erkek Rolü Ayarlanmamış!`)
@@ -20,17 +20,17 @@ exports.run = async (client, message, args) => {
     let member = message.mentions.users.first() || client.users.cache.get(args.join(' '))
       if(!member) return message.channel.send("Lütfen Bir Kullanıcı Girin.")
     const user = message.guild.member(member)
-    if (user.roles.cache.has(jkood.ErkekRol)) return message.reply("Bu Kişi Zaten Kayıtlı!")
+    if (user.roles.cache.has(jkood.CinsiyetsizKayıtVerilecekRol)) return message.reply("Bu Kişi Zaten Kayıtlı!")
     const nick = args[1];
     const yas = args[2];
       if(!nick) return message.channel.send("Lütfen Bir İsim Girin.")
       if (isNaN(yas)) return message.channel.send("Lütfen Bir Yaş Girin.");
-    setTimeout(function(){user.roles.add(jkood.ErkekRol)},3000)
-    setTimeout(function(){user.roles.remove(jkood.AlinacakRol)},4000)
+    setTimeout(function(){user.roles.add(jkood.CinsiyetsizKayıtVerilecekRol)},3000)
+    setTimeout(function(){user.roles.remove(jkood.AlinacakRol)},4000) //EĞER ALINACAK ROL GİRMEDİYSENİZ BU KOD SATIRININ *BAŞINA* // BU İKİ İŞARETİ KOYUN.
     user.setNickname(`${nick} | ${yas}`)
     
     message.channel.send('Kayıt işlemi Başarılı!')
-    db.add(`erkekistatistik${message.author.id}.${message.guild.id}`, 1)
+    db.add(`normalkayitistatistik${message.author.id}.${message.guild.id}`, 1)
     
       const LogMesajı = new Discord.MessageEmbed()
     .setAuthor("Üye Kaydı Yapıldı!")

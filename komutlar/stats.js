@@ -12,10 +12,10 @@ if (!kişi) return message.reply("Lütfen Bir kullanıcı Belirtin.")
     .setThumbnail(kişi.avatarURL({dynamic:true}))
     .setTimestamp()
     .setFooter(`${message.author.tag} Tarafından İstendi.`)
-    .setDescription(`**Yetkilinin Bilgileri**
+    .setDescription(`**Yetkilinin İstatistikleri**
     **▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬**
-    **Toplam \`${erkekbilgi ? erkekbilgi : '0'}\` Erkek Kayıtı Bulunuyor.**
-    **Toplam \`${kızbilgi ? kızbilgi : '0'}\` Kız Kayıtı Bulunuyor.**
+    **Toplam Erkek Kaydı \`${erkekbilgi ? erkekbilgi : '0'}\`**
+    **Toplam Kadın Kaydı \`${kızbilgi ? kızbilgi : '0'}\`**
     **▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬**`)
     message.channel.send(codework)
 };
