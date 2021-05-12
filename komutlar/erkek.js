@@ -6,7 +6,7 @@ exports.run = async (client, message, args) => {
   
   const kayıtkanalı = await jkood.Kayıtkanal
   if(kayıtkanalı == null) return message.channel.send('');
-  if (message.channel.id !== kayıtkanalı) return message.channel.send(`Sadece Kayıt Kanalından Kayıt Edebilirsiniz!`);
+  if (message.channel.id !== kayıtkanalı) return message.channel.send(`Kayıt İşlemlerini Sadece Ayarlanmış Kayıt Kanalından Yapabilirsiniz. (<#${kayıtkanalı}>)`);
   
   if(!message.member.hasPermission(jkood.KayitYetkilisi)) {
     return message.channel.send("Bu Komutu Kullanabilmek İçin Gerekli Yetkiye Sahip Değilsin!");
@@ -18,7 +18,7 @@ exports.run = async (client, message, args) => {
     const yas = args[2];
       if(!nick) return message.channel.send("Bir isim girin.")
       if(!yas) return message.channel.send("Bir yaş girin.")
-    setTimeout(function(){user.roles.add(jkood.VerilecekRol)},3000)
+    setTimeout(function(){user.roles.add(jkood.ErkekRol)},3000)
     setTimeout(function(){user.roles.remove(jkood.AlinacakRol)},4000)
     user.setNickname(`[${nick}] [${yas}]`)
     const embed = new Discord.MessageEmbed()
