@@ -20,17 +20,23 @@ exports.run = async (client, message, args) => {
       if(!yas) return message.channel.send("Bir yaş girin.")
     setTimeout(function(){user.roles.add(jkood.ErkekRol)},3000)
     setTimeout(function(){user.roles.remove(jkood.AlinacakRol)},4000)
-    user.setNickname(`[${nick}] [${yas}]`)
-    const embed = new Discord.MessageEmbed()
+    user.setNickname(`${nick} | ${yas}`)
+    
+    const embed2 = new Discord.MessageEmbed()
+    .addField(`Kayıt Edilen`, `${member}`)
+    .setFooter("Upper | Kayıt Sistemi")
+    .setColor("BLUE")
+    message.channel.send(embed2)
+    db.add(`erkekistatistik${message.author.id}.${message.guild.id}`, 1)
+    
+      const LogMesajı = new Discord.MessageEmbed()
     .setAuthor("Erkek Üye Kaydı Yapıldı!")
     .addField(`Kaydı yapılan\n`, `${user.user.tag}`)
     .addField(`Kaydı yapan\n`, `${message.author.tag}`)
     .addField(`Yeni isim\n`, `[${nick}] [${yas}]`)
     .setFooter("Upper | Kayıt Sistemi")
     .setColor("BLUE")
-    message.channel.send(`${message.author} Kayıt İşlemi Başarılı!`)
-    db.add(`erkekistatistik${message.author.id}.${message.guild.id}`, 1)
-    message.guild.channels.cache.get(jkood.KayıtLog).send(embed)
+    message.guild.channels.cache.get(jkood.KayıtLog).send(LogMesajı)
   }
 }
 exports.conf = {
