@@ -127,10 +127,7 @@ client.login(process.env.TOKEN)
 //-----------------------KOMUTLAR-----------------------\\
 
 client.on("guildMemberAdd", async member => {
-  let aktif = await db.fetch(`hgbbkanal_${member.guild.id}`)
-  if (!aktif) return  
     
-  let kanal = jkood.Kayıtkanal
   let kayıtekibi = jkood.KayitYetkilisi
   let user = client.users.cache.get(member.id);
   require("moment-duration-format");
@@ -144,21 +141,13 @@ if (kurulus > 1296000000) kontrol = ' **Güvenli** '
   const hgmesajı = new Discord.MessageEmbed()
     .setAuthor("Aramıza Yeni Bir Üye Katıldı!")
     .addField(`Toplam Kişi Sayımız`, `${member.guild.memberCount} Oldu!`)
-    .addField(`Toplam Kişi Sayımız`, `${member.guild.memberCount} Oldu!`)
+    .addField(`Güvenlik Durumu`, `${kontrol}`)
+    .addField(`Hesap Kuruluş Tarihi`, `${moment(member.user.createdAt).format(" **DD/MMMM/YYYY**")}`)
+    .addField(`Kayıt Hakkında`, `Kayıt Olabilmek için Kayıt Odalarına Girip, Kayıt Kanalından Kayıt Ekibimizi Etiketleyebilirsin.`)
     .setFooter("youtube.com/jkood")
     .setColor("BLUE")
-    .setThumbnail(member.avatarURL({dynamic:true}))  
+    .setThumbnail(user.avatarURL({dynamic:true}))  
     .setTimestamp()  
-
- client.channels.cache.get(kanal).send(`
-**Hoşgeldin! ${member} Seninle Birlikte ${member.guild.memberCount} Kişiyiz. **
-
-<@${kayıtekibi}> Seninle İlgilenecektir!
-
-Hesabın Oluşturulma Tarihi:** ${moment(member.user.createdAt).format(" **DD/MMMM/YYYY**")} **
-
-Güvenlik Durumu: ${kontrol}
-
-Kayıt Odalarına Girerek Kayıt Olabilirsiniz! `)
+ client.channels.cache.get(jkood.Kayıtkanal).send(`${user}`, hgmesajı)
   
   });
