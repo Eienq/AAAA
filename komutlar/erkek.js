@@ -7,6 +7,9 @@ exports.run = async (client, message, args) => {
   const kayıtkanalı = await jkood.Kayıtkanal
   if(kayıtkanalı == null) return message.channel.send('');
   if (message.channel.id !== kayıtkanalı) return message.channel.send(`Kayıt İşlemlerini Sadece Ayarlanmış Kayıt Kanalından Yapabilirsiniz. (<#${kayıtkanalı}>)`);
+  const erkekrol = await jkood.Kayıtkanal
+  const alınacakrol = await jkood.Kayıtkanal
+  const kayıtlog = await jkood.Kayıtkanal
   
   if(!message.member.hasPermission(jkood.KayitYetkilisi)) {
     return message.channel.send("Bu Komutu Kullanabilmek İçin Gerekli Yetkiye Sahip Değilsin!");
@@ -14,6 +17,7 @@ exports.run = async (client, message, args) => {
     let member = message.mentions.users.first() || client.users.cache.get(args.join(' '))
       if(!member) return message.channel.send("Bir kullanıcı girin.")
     const user = message.guild.member(member)
+    if (user.roles.cache.has(jkood.ErkekRol)) return message.reply("Bu Kişi Zaten Kayıtlı!")
     const nick = args[1];
     const yas = args[2];
       if(!nick) return message.channel.send("Bir isim girin.")
@@ -22,20 +26,17 @@ exports.run = async (client, message, args) => {
     setTimeout(function(){user.roles.remove(jkood.AlinacakRol)},4000)
     user.setNickname(`${nick} | ${yas}`)
     
-    const embed2 = new Discord.MessageEmbed()
-    .addField(`Kayıt Edilen`, `${member}`)
-    .setFooter("Upper | Kayıt Sistemi")
-    .setColor("BLUE")
-    message.channel.send(embed2)
+    message.channel.send('Kayıt işlemi Başarılı!')
     db.add(`erkekistatistik${message.author.id}.${message.guild.id}`, 1)
     
       const LogMesajı = new Discord.MessageEmbed()
     .setAuthor("Erkek Üye Kaydı Yapıldı!")
-    .addField(`Kaydı yapılan\n`, `${user.user.tag}`)
-    .addField(`Kaydı yapan\n`, `${message.author.tag}`)
-    .addField(`Yeni isim\n`, `[${nick}] [${yas}]`)
-    .setFooter("Upper | Kayıt Sistemi")
+    .addField(`Kayıt Edilen\n`, `${user}`)
+    .addField(`Yetkili\n`, `${message.author}`)
+    .setFooter("youtube.com/jkood")
     .setColor("BLUE")
+    .setThumbnail(member.avatarURL({dynamic:true}))  
+    .setTimestamp()  
     message.guild.channels.cache.get(jkood.KayıtLog).send(LogMesajı)
   }
 }
