@@ -4,32 +4,43 @@ const jkood = require('../jkood.json');
 
 exports.run = async (client, message, args) => {
   
-  const kayıtkanalı = await db.fetch(`yetkilikayıtk_${message.guild.id}`)
-  if (message.channel.id !== kayıtkanalı) return message.channel.send(`Sadece Kayıt Kanalından Kayıt Edebilirsiniz!`);
-  
-  if(!message.member.hasPermission(db.fetch(`yetkilirolk_${message.guild.id}`))) {
+  const kayıtkanalı = await jkood.Kayıtkanal
+  if(kayıtkanalı == null) return message.channel.send('');
+  if (message.channel.id !== kayıtkanalı) return message.channel.send(`Kayıt İşlemlerini Sadece Ayarlanmış Kayıt Kanalından Yapabilirsiniz. (<#${kayıtkanalı}>)`);
+  if(!message.member.hasPermission(jkood.KayitYetkilisi)) {
     return message.channel.send("Bu Komutu Kullanabilmek İçin Gerekli Yetkiye Sahip Değilsin!");
   } else {
-    let member = message.mentions.users.first() || client.users.get(args.join(' '))
-      if(!member) return message.channel.send("Bir kullanıcı girin.")
+  const erkekrol = await jkood.KadınRol
+  const alınacakrol = await jkood.AlinacakRol
+  const kayıtlog = await jkood.KayıtLog
+  if(!erkekrol) return message.reply(`Erkek Rolü Ayarlanmamış!`)
+  //if(!alınacakrol) return message.reply(`Alınacak Rol Ayarlanmamış!`) BURADAKİ // BU İŞARETLERİ SİLERSENİZ ALINACAK ROL GİREREK KULLANMAYA BAŞLARSINIZ. EĞER SİLMESSENİZ ALINACAK ROL GİRMENİZE GEREK KALMAZ.
+  if(!kayıtlog) return message.reply(`Kayıt Log Ayarlanmamış!`)
+    
+    let member = message.mentions.users.first() || client.users.cache.get(args.join(' '))
+      if(!member) return message.channel.send("Lütfen Bir Kullanıcı Girin.")
     const user = message.guild.member(member)
+    if (user.roles.cache.has(jkood.KadınRol)) return message.reply("Bu Kişi Zaten Kayıtlı!")
     const nick = args[1];
     const yas = args[2];
-      if(!nick) return message.channel.send("Bir isim girin.")
-      if(!yas) return message.channel.send("Bir yaş girin.")
-    setTimeout(function(){user.roles.add(db.fetch(`kadınrolk_${message.guild.id}`))},3000)
-    setTimeout(function(){user.roles.remove(db.fetch(`yetkilikayıtalınacak_${message.guild.id}`))},4000)
-    user.setNickname(`[${nick}] [${yas}]`)
-    const embed = new Discord.MessageEmbed()
-    .setAuthor("Kadın Üye Kaydı Yapıldı!")
-    .addField(`Kaydı yapılan\n`, `${user.user.tag}`)
-    .addField(`Kaydı yapan\n`, `${message.author.tag}`)
-    .addField(`Yeni isim\n`, `[${nick}] [${yas}]`)
-    .setFooter("Upper | Kayıt Sistemi")
-    .setColor("BLUE")
-    message.channel.send(`${message.author} Kayıt İşlemi Başarılı!`)
+      if(!nick) return message.channel.send("Lütfen Bir İsim Girin.")
+      if (isNaN(yas)) return message.channel.send("Lütfen Bir Yaş Girin.");
+    setTimeout(function(){user.roles.add(jkood.KadınRol)},3000)
+    setTimeout(function(){user.roles.remove(jkood.AlinacakRol)},4000)
+    user.setNickname(`${nick} | ${yas}`)
+    
+    message.channel.send('Kayıt işlemi Başarılı!')
     db.add(`kızistatistik${message.author.id}.${message.guild.id}`, 1)
-    message.guild.channels.cache.get(db.fetch(`yetkilikayıtlogk_${message.guild.id}`)).send(embed)
+    
+      const LogMesajı = new Discord.MessageEmbed()
+    .setAuthor("Kadın Üye Kaydı Yapıldı!")
+    .addField(`Kayıt Edilen\n`, `${user}`)
+    .addField(`Yetkili\n`, `${message.author}`)
+    .setFooter("youtube.com/jkood")
+    .setColor("BLUE")
+    .setThumbnail(member.avatarURL({dynamic:true}))  
+    .setTimestamp()  
+    message.guild.channels.cache.get(jkood.KayıtLog).send(LogMesajı)
   }
 }
 exports.conf = {

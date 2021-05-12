@@ -33,7 +33,7 @@ exports.run = async (client, message, args) => {
     db.add(`erkekistatistik${message.author.id}.${message.guild.id}`, 1)
     
       const LogMesajı = new Discord.MessageEmbed()
-    .setAuthor("Erkek Üye Kaydı Yapıldı!")
+    .setAuthor("Üye Kaydı Yapıldı!")
     .addField(`Kayıt Edilen\n`, `${user}`)
     .addField(`Yetkili\n`, `${message.author}`)
     .setFooter("youtube.com/jkood")
@@ -46,11 +46,11 @@ exports.run = async (client, message, args) => {
 exports.conf = {
   enabled: true,
   guildOnly: false,
-  aliases: ["e"],
+  aliases: [""],
   permLevel: 0
 };
 exports.help = {
-  name: "erkek",
+  name: "kayıt",
   description: "",
   usage: "erkek @etiket"
 };
