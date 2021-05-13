@@ -125,6 +125,7 @@ client.login(process.env.TOKEN)
 
 
 //-----------------------KOMUTLAR-----------------------\\
+//HG MESAJI
 
 client.on("guildMemberAdd", async member => {
     
@@ -151,3 +152,15 @@ if (kurulus > 1296000000) kontrol = ' **Güvenli** '
  client.channels.cache.get(jkood.Kayıtkanal).send(`${user}`, hgmesajı)
   
   });
+
+//HG MESAJI SON
+
+//OTOROL
+
+client.on("guildMemberAdd", member => {
+  
+  let jkood = jkood.otorol
+  member.roles.add(jkood);
+});
+
+//OTOROL SON
