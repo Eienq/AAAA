@@ -7,8 +7,7 @@ exports.run = async (client, message, args) => {
   const kayıtkanalı = await jkood.Kayıtkanal
   if(kayıtkanalı == null) return message.channel.send('');
   if (message.channel.id !== kayıtkanalı) return message.channel.send(`Kayıt İşlemlerini Sadece Ayarlanmış Kayıt Kanalından Yapabilirsiniz. (<#${kayıtkanalı}>)`);
-  if(!message.member.hasPermission(jkood.KayitYetkilisi)) {
-    return message.channel.send("Bu Komutu Kullanabilmek İçin Gerekli Yetkiye Sahip Değilsin!");
+  if(!message.member.hasPermission(jkood.KayitYetkilisi)) { return message.channel.send("Bu Komutu Kullanabilmek İçin Gerekli Yetkiye Sahip Değilsin!");
   } else {
   const erkekrol = await jkood.ErkekRol
   const alınacakrol = await jkood.AlinacakRol
@@ -42,8 +41,8 @@ exports.run = async (client, message, args) => {
    db.add(`erkekistatistik${message.author.id}.${message.guild.id}`, 1) 
    db.add(`toplamistatistik${message.author.id}.${message.guild.id}`, 1)
     
-   db.add(`yetkili.${message.author.id}.toplam`, 1)
-   let toplam = db.fetch(`yetkili.${message.author.id}.toplam`) 
+   //db.add(`yetkili.${message.author.id}.toplam`, 1)
+   //let toplam = db.fetch(`yetkili.${message.author.id}.toplam`) 
   }
 }
 exports.conf = {
