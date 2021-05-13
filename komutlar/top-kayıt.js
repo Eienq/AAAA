@@ -22,9 +22,9 @@ if (!kişi) return message.reply("Lütfen Bir kullanıcı Belirtin.")
 exports.conf = {
  enabled: true,
  guildOnly: false,
- aliases: ["kayıtlar"],
+ aliases: ["topstats","topkayıt"],
  permLevel: 0,
 };
 exports.help = {
- name: 'stats'
+ name: 'top-stats'
 };
