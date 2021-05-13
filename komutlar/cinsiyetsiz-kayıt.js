@@ -36,8 +36,6 @@ exports.run = async (client, message, args) => {
     .setThumbnail(member.avatarURL({dynamic:true}))  
     .setTimestamp()  
     message.guild.channels.cache.get(jkood.KayıtLog).send(embed)
-    
-    db.add(`normalkayitistatistik${message.author.id}.${message.guild.id}`, 1)
   }
 }
 exports.conf = {

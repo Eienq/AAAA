@@ -1,31 +1,28 @@
-const Discord = require('discord.js')
-const db = require('quick.db')
+const Discord = require("discord.js");
 const jkood = require('../jkood.json')
+const db = require('quick.db')
 
-exports.run = async (client, message, member) => {
-if(!message.member.hasPermission("ADMINISTRATOR")) return message.reply(`Bu Komutu Kullanabilmek İçin Yeterli Yetkiye Sahip Değilsin!`);
+exports.run = async(client, message, args) => {
 
-let kişi = message.mentions.users.first() || message.author;
-let bilgi = db.get(`yetkili.${kişi.id}.toplam`);
-  
-let top = message.guild.members.cache.filter(kişi => db.get(`toplamistatistik${kişi.id}`)).array().sort((kişi1, kişi2) => Number(db.get(`toplamistatistik${kişi2.id}`))-Number(db.get(`toplamistatistik${kişi1.id}`))).slice(0, 15).map((kişi, index) => (index+1)+" • <@"+ kişi +"> | \`" + db.get(`toplamistatistik${kişi.id}`) +"\` Kayıta Sahip.").join('\n');
-const embed = new Discord.MessageEmbed()
-.setAuthor(`Top Stats`, message.guild.iconURL({dynamic: true}))
-.setTimestamp()
-.setColor("#38ff3d")
-.setFooter(message.member.displayName+" tarafından istendi!", message.author.avatarURL)
-.setDescription(top);
+const kayıtyetkilisi = await jkood.KayitYetkilisi
+let sıra = 1
+let mesaj = message.guild.members.cache.filter(mem => mem.roles.cache.has(kayıtyetkilisi)).array().sort((a, b) => { 
+return ((db.fetch(`toplamistatistik${b.user.id}`) || 0) -(db.fetch(`toplamistatistik${a.user.id}`) || 0));}).slice(0, 10).map(member => { 
+return `\n **${sıra++}.**  <@${member.user.id}> : **${db.fetch(`toplamistatistik${member.user.id}`) || 0}** kayıt (**${db.fetch(`kızistatistik${member.user.id}`) || 0}** kız , **${db.fetch(`erkekistatistik${member.user.id}`) || 0}** erkek)`})
+
+let embed = new Discord.MessageEmbed()
+.setColor("RANDOM")
+.setDescription(mesaj)
 message.channel.send(embed)
-  
+
 }
-
 exports.conf = {
-    enabled: true,
-    guildOnly: false,
-    aliases: ["top-stats", "topkayıt", "top-kayıt"],
-    permLevel: 0
+enabled: true,
+guildOnly: false,
+aliases: [],
+permLevel: 0
 };
-
+  
 exports.help = {
-    name: "topstats"
+name: 'kayıt-bilgi',
 }
