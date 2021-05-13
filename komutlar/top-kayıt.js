@@ -1,30 +1,31 @@
-const Discord = require(`discord.js`);
-const db = require(`quick.db`)
+const Discord = require('discord.js')
+const db = require('quick.db')
+const jkood = require('../jkood.json')
 
-exports.run = async(client, message, args) => {
-  if(!message.member.hasPermission("ADMINISTRATOR")) return message.reply(`Bu Komutu Kullanabilmek İçin Yeterli Yetkiye Sahip Değilsin!`);
-let kişi = message.mentions.users.first()
-if (!kişi) return message.reply("Lütfen Bir kullanıcı Belirtin.")
-    const erkekbilgi = await db.fetch(`erkekistatistik${kişi.id}.${message.guild.id}`)
-    const kızbilgi = await db.fetch(`kızistatistik${kişi.id}.${message.guild.id}`)
-    const codework = new Discord.MessageEmbed()
-    .setAuthor(kişi.username, kişi.avatarURL())
-    .setThumbnail(kişi.avatarURL({dynamic:true}))
-    .setTimestamp()
-    .setFooter(`${message.author.tag} Tarafından İstendi.`)
-    .setDescription(`**Yetkilinin İstatistikleri**
-    **▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬**
-    **Toplam Erkek Kaydı \`${erkekbilgi ? erkekbilgi : '0'}\`**
-    **Toplam Kadın Kaydı \`${kızbilgi ? kızbilgi : '0'}\`**
-    **▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬**`)
-    message.channel.send(codework)
-};
+exports.run = async (client, message, member) => {
+if(!message.member.hasPermission("ADMINISTRATOR")) return message.reply(`Bu Komutu Kullanabilmek İçin Yeterli Yetkiye Sahip Değilsin!`);
+
+let kişi = message.mentions.users.first() || message.author;
+let bilgi = db.get(`yetkili.${kişi.id}.toplam`);
+  
+let top = message.guild.members.cache.filter(kişi => db.get(`toplamistatistik${kişi.id}`)).array().sort((kişi1, kişi2) => Number(db.get(`toplamistatistik${kişi2.id}`))-Number(db.get(`toplamistatistik${kişi1.id}`))).slice(0, 15).map((kişi, index) => (index+1)+" • <@"+ kişi +"> | \`" + db.get(`toplamistatistik${kişi.id}`) +"\` Kayıta Sahip.").join('\n');
+const embed = new Discord.MessageEmbed()
+.setAuthor(`Top Stats`, message.guild.iconURL({dynamic: true}))
+.setTimestamp()
+.setColor("#38ff3d")
+.setFooter(message.member.displayName+" tarafından istendi!", message.author.avatarURL)
+.setDescription(top);
+message.channel.send(embed)
+  
+}
+
 exports.conf = {
- enabled: true,
- guildOnly: false,
- aliases: ["topstats","topkayıt"],
- permLevel: 0,
+    enabled: true,
+    guildOnly: false,
+    aliases: ["top-stats", "topkayıt", "top-kayıt"],
+    permLevel: 0
 };
+
 exports.help = {
- name: 'top-stats'
-};
+    name: "topstats"
+}

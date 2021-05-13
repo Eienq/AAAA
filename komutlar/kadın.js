@@ -38,6 +38,7 @@ exports.run = async (client, message, args) => {
     message.guild.channels.cache.get(jkood.Kayıtkanal).send(Embed)
     
     db.add(`kızistatistik${message.author.id}.${message.guild.id}`, 1)
+    db.add(`toplamistatistik${message.author.id}.${message.guild.id}`, 1)
   }
 }
 exports.conf = {

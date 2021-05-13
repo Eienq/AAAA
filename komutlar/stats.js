@@ -7,6 +7,7 @@ let kişi = message.mentions.users.first()
 if (!kişi) return message.reply("Lütfen Bir kullanıcı Belirtin.")
     const erkekbilgi = await db.fetch(`erkekistatistik${kişi.id}.${message.guild.id}`)
     const kızbilgi = await db.fetch(`kızistatistik${kişi.id}.${message.guild.id}`)
+    const toplambilgi = await db.fetch(`toplamistatistik${kişi.id}.${message.guild.id}`)
     const codework = new Discord.MessageEmbed()
     .setAuthor(kişi.username, kişi.avatarURL())
     .setThumbnail(kişi.avatarURL({dynamic:true}))
@@ -14,6 +15,7 @@ if (!kişi) return message.reply("Lütfen Bir kullanıcı Belirtin.")
     .setFooter(`${message.author.tag} Tarafından İstendi.`)
     .setDescription(`**Yetkilinin İstatistikleri**
     **▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬**
+    **Toplam Kaydı \`${toplambilgi ? toplambilgi : '0'}\`**
     **Toplam Erkek Kaydı \`${erkekbilgi ? erkekbilgi : '0'}\`**
     **Toplam Kadın Kaydı \`${kızbilgi ? kızbilgi : '0'}\`**
     **▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬**`)
