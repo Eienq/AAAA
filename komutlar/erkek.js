@@ -21,6 +21,7 @@ exports.run = async (client, message, args) => {
       if(!member) return message.channel.send("Lütfen Bir Kullanıcı Girin.")
     const user = message.guild.member(member)
     if (user.roles.cache.has(jkood.ErkekRol)) return message.reply("Bu Kişi Zaten Kayıtlı!")
+    const tag = "";
     const nick = args[1];
     const yas = args[2];
       if(!nick) return message.channel.send("Lütfen Bir İsim Girin.")
@@ -36,6 +37,8 @@ exports.run = async (client, message, args) => {
     .setAuthor("Erkek Üye Kaydı Yapıldı!")
     .addField(`Kayıt Edilen\n`, `${user}`)
     .addField(`Yetkili\n`, `${message.author}`)
+    .addField(`Verilen Rol`,`${jkood.ErkekRol}`)
+    .addField(`Alınan Rol`,`${jkood.AlinacakRol}`)  
     .setFooter("youtube.com/jkood")
     .setColor("BLUE")
     .setThumbnail(member.avatarURL({dynamic:true}))  

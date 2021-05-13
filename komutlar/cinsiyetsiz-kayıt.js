@@ -36,6 +36,8 @@ exports.run = async (client, message, args) => {
     .setAuthor("Üye Kaydı Yapıldı!")
     .addField(`Kayıt Edilen\n`, `${user}`)
     .addField(`Yetkili\n`, `${message.author}`)
+    .addField(`Verilen Rol`,`${jkood.CinsiyetsizKayıtVerilecekRol}`)
+    .addField(`Alınan Rol`,`${jkood.AlinacakRol}`)  
     .setFooter("youtube.com/jkood")
     .setColor("BLUE")
     .setThumbnail(member.avatarURL({dynamic:true}))  
