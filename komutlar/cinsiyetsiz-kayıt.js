@@ -12,10 +12,8 @@ exports.run = async (client, message, args) => {
   } else {
   const erkekrol = await jkood.CinsiyetsizKayıtVerilecekRol
   const alınacakrol = await jkood.AlinacakRol
-  const kayıtlog = await jkood.KayıtLog
   if(!erkekrol) return message.reply(`Erkek Rolü Ayarlanmamış!`)
   //if(!alınacakrol) return message.reply(`Alınacak Rol Ayarlanmamış!`) BURADAKİ // BU İŞARETLERİ SİLERSENİZ ALINACAK ROL GİREREK KULLANMAYA BAŞLARSINIZ. EĞER SİLMESSENİZ ALINACAK ROL GİRMENİZE GEREK KALMAZ.
-  if(!kayıtlog) return message.reply(`Kayıt Log Ayarlanmamış!`)
     
     let member = message.mentions.users.first() || client.users.cache.get(args.join(' '))
       if(!member) return message.channel.send("Lütfen Bir Kullanıcı Girin.")
@@ -27,22 +25,19 @@ exports.run = async (client, message, args) => {
       if (isNaN(yas)) return message.channel.send("Lütfen Bir Yaş Girin.");
     setTimeout(function(){user.roles.add(jkood.CinsiyetsizKayıtVerilecekRol)},3000)
     setTimeout(function(){user.roles.remove(jkood.AlinacakRol)},4000) //EĞER ALINACAK ROL GİRMEDİYSENİZ BU KOD SATIRININ *BAŞINA* // BU İKİ İŞARETİ KOYUN.
-    user.setNickname(`${nick} | ${yas}`)
+    user.setNickname(`${jkood.tag} ${nick} | ${yas}`)
     
-    message.channel.send('Kayıt işlemi Başarılı!')
-    db.add(`normalkayitistatistik${message.author.id}.${message.guild.id}`, 1)
-    
-      const LogMesajı = new Discord.MessageEmbed()
+      const embed = new Discord.MessageEmbed()
     .setAuthor("Üye Kaydı Yapıldı!")
     .addField(`Kayıt Edilen\n`, `${user}`)
     .addField(`Yetkili\n`, `${message.author}`)
-    .addField(`Verilen Rol`,`${jkood.CinsiyetsizKayıtVerilecekRol}`)
-    .addField(`Alınan Rol`,`${jkood.AlinacakRol}`)  
     .setFooter("youtube.com/jkood")
     .setColor("BLUE")
     .setThumbnail(member.avatarURL({dynamic:true}))  
     .setTimestamp()  
-    message.guild.channels.cache.get(jkood.KayıtLog).send(LogMesajı)
+    message.guild.channels.cache.get(jkood.KayıtLog).send(embed)
+    
+    db.add(`normalkayitistatistik${message.author.id}.${message.guild.id}`, 1)
   }
 }
 exports.conf = {
