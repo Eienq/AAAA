@@ -1,6 +1,9 @@
 const Discord = require("discord.js");
 const db = require('quick.db');
 const jkood = require('../jkood.json');
+const ms = require('ms');
+const moment = require('moment');
+moment.locale('tr');
 
 exports.run = async (client, message, args) => {
   
@@ -18,6 +21,8 @@ exports.run = async (client, message, args) => {
       if(!member) return message.reply("Lütfen Bir Kullanıcı Girin.")
     if(member.id === message.author.id) return message.reply('Kendini Kayıt Edemessin. Lütfen Geçerli Bir Kullanıcı Gir.')
     if(member.id === client.user.id) return message.reply('Botu Kayıt Edemessin. Lütfen Geçerli Bir Kullanıcı Gir.')
+    if(member.id === message.guild.OwnerID) return message.reply('Sunucu Sahibini Kayıt Edemessin. Lütfen Geçerli Bir Kullanıcı Gir.')
+    if(member.roles.highest.position >= message.member.roles.highest.position) return message.reply('Yetkiliyi Kayıt Edemessin. Lütfen Geçerli Bir Kullanıcı Gir.')
     const user = message.guild.member(member)
     if (user.roles.cache.has(jkood.ErkekRol)) return message.reply("Bu Kişi Zaten Kayıtlı!")
     const nick = args[1];
@@ -27,6 +32,7 @@ exports.run = async (client, message, args) => {
     setTimeout(function(){user.roles.add(jkood.ErkekRol)},3000)
     setTimeout(function(){user.roles.remove(jkood.AlinacakRol)},4000) //EĞER ALINACAK ROL GİRMEDİYSENİZ BU KOD SATIRININ *BAŞINA* // BU İKİ İŞARETİ KOYUN.
     user.setNickname(`${jkood.tag} ${nick} | ${yas}`)
+    Date.now()e('gün', 'day'));
     
       const embed = new Discord.MessageEmbed()
     .setAuthor("Erkek Üye Kaydı Yapıldı!")
