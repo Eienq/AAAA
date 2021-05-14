@@ -1,9 +1,6 @@
 const Discord = require("discord.js");
 const db = require('quick.db');
 const jkood = require('../jkood.json');
-const ms = require('ms');
-const moment = require('moment');
-moment.locale('tr');
 
 exports.run = async (client, message, args) => {
   
@@ -32,8 +29,7 @@ exports.run = async (client, message, args) => {
     setTimeout(function(){user.roles.add(jkood.ErkekRol)},3000)
     setTimeout(function(){user.roles.remove(jkood.AlinacakRol)},4000) //EĞER ALINACAK ROL GİRMEDİYSENİZ BU KOD SATIRININ *BAŞINA* // BU İKİ İŞARETİ KOYUN.
     user.setNickname(`${jkood.tag} ${nick} | ${yas}`)
-    Date.now()e('gün', 'day'));
-    
+ 
       const embed = new Discord.MessageEmbed()
     .setAuthor("Erkek Üye Kaydı Yapıldı!")
     .addField(`Kayıt Edilen\n`, `${user}`)

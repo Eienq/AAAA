@@ -154,3 +154,11 @@ if (kurulus > 1296000000) kontrol = ' **Güvenli** '
   });
 
 //HG MESAJI SON
+
+//OTO İSİM
+
+client.on("guildMemberAdd", member => {
+   member.setNickname("youtube.com/jkood")   
+   })
+
+//OTO İSİM SON

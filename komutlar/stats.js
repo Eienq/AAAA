@@ -22,7 +22,7 @@ if(!args[0]) {
     **▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬**`)
     message.channel.send(codework)}
   if(kişi) {
-     const erkekbilgi = await db.fetch(`erkekistatistik${kişi.id}.${message.guild.id}`)
+    const erkekbilgi = await db.fetch(`erkekistatistik${kişi.id}.${message.guild.id}`)
     const kızbilgi = await db.fetch(`kızistatistik${kişi.id}.${message.guild.id}`)
     const toplambilgi = await db.fetch(`toplamistatistik${kişi.id}.${message.guild.id}`)
     const codework = new Discord.MessageEmbed()
