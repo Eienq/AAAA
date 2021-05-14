@@ -37,8 +37,7 @@ exports.run = async (client, message, args) => {
     .setThumbnail(member.avatarURL({dynamic:true}))  
     .setTimestamp()  
     message.guild.channels.cache.get(jkood.Kayıtkanal).send(embed)
-    
-   const isim = await db.add(`isim.${message.guild.id}.${member.id}`, `${nick} | ${yas}`); 
+
    db.add(`erkekistatistik${message.author.id}.${message.guild.id}`, 1) 
    db.add(`toplamistatistik${message.author.id}.${message.guild.id}`, 1)
    
