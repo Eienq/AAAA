@@ -144,23 +144,13 @@ if (kurulus > 1296000000) kontrol = ' **Güvenli** '
     .addField(`Toplam Kişi Sayımız`, `${member.guild.memberCount} Oldu!`)
     .addField(`Güvenlik Durumu`, `${kontrol}`)
     .addField(`Hesap Kuruluş Tarihi`, `${moment(member.user.createdAt).format(" **DD/MMMM/YYYY**")}`)
-    .addField(`Kayıt Hakkında`, `Kayıt Olabilmek için Kayıt Odalarına Girip, Kayıt Kanalından Kayıt Ekibimizi Etiketleyebilirsin.`)
+    .addField(`Kayıt Hakkında`, `Kayıt Olabilmek için Kayıt Odalarına Girip, Kayıt Yetkililerini Beklemelisiniz.`)
     .setFooter("youtube.com/jkood")
     .setColor("BLUE")
     .setThumbnail(user.avatarURL({dynamic:true}))  
     .setTimestamp()  
- client.channels.cache.get(jkood.Kayıtkanal).send(`${user}`, hgmesajı)
+ client.channels.cache.get(jkood.Kayıtkanal).send(`${user} <@&${kayıtekibi}>`, hgmesajı)
   
   });
 
 //HG MESAJI SON
-
-//OTOROL
-
-client.on("guildMemberAdd", member => {
-  
-  let jkood = jkood.otorol
-  member.roles.add(jkood);
-});
-
-//OTOROL SON

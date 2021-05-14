@@ -40,9 +40,7 @@ exports.run = async (client, message, args) => {
     
    db.add(`erkekistatistik${message.author.id}.${message.guild.id}`, 1) 
    db.add(`toplamistatistik${message.author.id}.${message.guild.id}`, 1)
-    
-   //db.add(`yetkili.${message.author.id}.toplam`, 1)
-   //let toplam = db.fetch(`yetkili.${message.author.id}.toplam`) 
+   
   }
 }
 exports.conf = {
