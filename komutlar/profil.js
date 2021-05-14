@@ -34,16 +34,18 @@ rozetler = true;
 .replace('SYSTEM', 'Sistem')
 .replace('BUGHUNTER_LEVEL_2', 'Bug Avcısı 2. Lvl')
 .replace('VERIFIED_BOT', 'Onaylı Bot');
+
   
     const embed = new Discord.MessageEmbed()
     .setAuthor(kişi.user.username, kişi.user.avatarURL({dynamic:true}))
     .setThumbnail(kişi.user.avatarURL(({dynamic:true})))
     .setTimestamp()
-    .addField(`Adı Ve Hesap İD`, `${kişi.user.username}#${kişi.user.discriminator} (${kişi.user.id})`)
-    .addField(`Sunucu İçi Bilgileri`, `İsmi: ${kişi.nickname}\n`,)
-    .addField(`Hesap Kuruluş Tarihi`, `${moment(kişi.user.createdAt).format(" DD/MMMM/YYYY ")}`)
-    .addField(`Sunucuya Giriş Tarihi\n`, `${moment(kişi.joinedTimestamp).format('D/MMMM/YYYY')}`)
+    .addField(`Adı Ve Hesap İD`, `${kişi.user.username}#${kişi.user.discriminator} (${kişi.user.id})\n**Sunucudaki Adı:** ${kişi.nickname}`)
+    .addField('Durum', mention.presence.status.replace('online', 'Çevrimiçi').replace('idle', 'Boşta').replace('dnd', 'Rahatsız Etmeyin').replace('offline', 'Çevrimdışı'))
+    .addField(`Hesap Kuruluş Tarihi`, `${moment(kişi.user.createdAt).format(" DD/MMMM/YYYY ")}`, true)
+    .addField(`Sunucuya Giriş Tarihi\n`, `${moment(kişi.joinedTimestamp).format('D/MMMM/YYYY')}`, true)
     .addField('Rozetler', `${rozetler ? mentionFlags : 'Yok'}`)
+    .addField('Roller', mentionMember.roles.cache.filter(a => a.name !== '@everyone').map(a => a).join(' ') ? mentionMember.roles.cache.filter(a => a.name !== '@everyone').map(a => a).join(' ') : 'Yok')
     .setFooter(`${message.author.tag} Tarafından İstendi.`)
     message.channel.send(embed)
 };
