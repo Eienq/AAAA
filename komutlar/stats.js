@@ -7,7 +7,7 @@ exports.run = async(client, message, args) => {
 let kişi = message.mentions.users.first()
 if(!args[0]) {
     const erkekbilgi = await db.fetch(`erkekistatistik${message.author.id}.${message.guild.id}`)
-    //const kızbilgi = await db.fetch(`kızistatistik${message.author.id}.${message.guild.id}`)
+    const kızbilgi = await db.fetch(`kızistatistik${message.author.id}.${message.guild.id}`)
     const toplambilgi = await db.fetch(`toplamistatistik${message.author.id}.${message.guild.id}`)
     const codework = new Discord.MessageEmbed()
     .setAuthor(message.author.username, message.author.avatarURL({dynamic:true}))
@@ -18,11 +18,12 @@ if(!args[0]) {
     **▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬**
     **Toplam Kaydı \`${toplambilgi ? toplambilgi : '0'}\`**
     **Toplam Erkek Kaydı \`${erkekbilgi ? erkekbilgi : '0'}\`**
+    **Toplam Kadın Kaydı \`${kızbilgi ? kızbilgi : '0'}\`**
     **▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬**`)
     message.channel.send(codework)}
   if(kişi) {
      const erkekbilgi = await db.fetch(`erkekistatistik${kişi.id}.${message.guild.id}`)
-    //const kızbilgi = await db.fetch(`kızistatistik${kişi.id}.${message.guild.id}`)
+    const kızbilgi = await db.fetch(`kızistatistik${kişi.id}.${message.guild.id}`)
     const toplambilgi = await db.fetch(`toplamistatistik${kişi.id}.${message.guild.id}`)
     const codework = new Discord.MessageEmbed()
     .setAuthor(kişi.username, kişi.avatarURL)
@@ -33,8 +34,9 @@ if(!args[0]) {
     **▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬**
     **Toplam Kaydı \`${toplambilgi ? toplambilgi : '0'}\`**
     **Toplam Erkek Kaydı \`${erkekbilgi ? erkekbilgi : '0'}\`**
+    **Toplam Kadın Kaydı \`${kızbilgi ? kızbilgi : '0'}\`**
     **▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬**`)
-    message.channel.send(codework)}  //**Toplam Kadın Kaydı \`${kızbilgi ? kızbilgi : '0'}\`**
+    message.channel.send(codework)}
 };
 exports.conf = {
  enabled: true,
