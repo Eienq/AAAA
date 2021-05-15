@@ -185,3 +185,13 @@ client.on("userUpdate", async (oldUser, newUser) => {
 })
 
 //TAG ALANA ROL
+
+//BOTU SESTE TUTMA
+
+client.on("ready", async () => {
+  console.log("Bot Başarıyla Ses Kanalına Bağlandı")
+  let botVoiceChannel = client.channels.cache.get("815676491991875626");
+  if (botVoiceChannel) botVoiceChannel.join().catch(err => console.error("Bot ses kanalına bağlanırken bir hata oluştu!"));
+});
+
+//BOTU SESTE TUTMA
