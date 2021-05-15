@@ -19,6 +19,7 @@ exports.run = async (client, message, args) => {
       if(!member) return message.channel.send("Lütfen Bir Kullanıcı Girin.")
        if(member.id === message.author.id) return message.reply('Kendini Kayıt Edemessin. Lütfen Geçerli Bir Kullanıcı Gir.')
     if(member.id === client.user.id) return message.reply('Botu Kayıt Edemessin. Lütfen Geçerli Bir Kullanıcı Gir.')
+    if(member.id === message.guild.OwnerID) return message.reply('Sunucu Sahibini Kayıt Edemessin. Lütfen Geçerli Bir Kullanıcı Gir.')
     const user = message.guild.member(member)
     if (user.roles.cache.has(jkood.KadınRol)) return message.reply("Bu Kişi Zaten Kayıtlı!")
     const nick = args[1];
