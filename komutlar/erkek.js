@@ -28,23 +28,6 @@ exports.run = async (client, message, args) => {
     setTimeout(function(){user.roles.add(jkood.ErkekRol)},3000)
     setTimeout(function(){user.roles.remove(jkood.AlinacakRol)},4000) //EĞER ALINACAK ROL GİRMEDİYSENİZ BU KOD SATIRININ *BAŞINA* // BU İKİ İŞARETİ KOYUN.
     user.setNickname(`${jkood.tag} ${nick} | ${yas}`)
- 
-    const a = await db.fetch(`oldisimler${message.guild.id}.${member.id}`);
-  if (a == null) await db.set(`oldisimler${message.guild.id}.${member.id}`, []);
-  await db.push(`oldisimler${message.guild.id}.${member.id}`, `${nick} | ${yas}`);
-
-  let fdh = db.fetch(`oldisimler${message.guild.id}.${member.id}`);
-  if (!fdh | fdh === [] || fdh.length === 0 || fdh.length < 1) return message.channel.send('Eski isimleri bulunmadı!').then(x => x.delete({ timeout: 9000}))
-
-  let uzunluk;
-  if (fdh.length >= 11) uzunluk = 10
-  if (fdh.length < 11) uzunluk = fdh.length
-
-  let sayı = 1
-  let data = []
-  for (var i = 0; i < uzunluk; i++) {
-    data.push(`\`• ${fdh[i]}\``);
-  };
     
       const embed = new Discord.MessageEmbed()
     .setAuthor("Erkek Üye Kaydı Yapıldı!")

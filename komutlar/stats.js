@@ -26,8 +26,8 @@ if(!args[0]) {
     const kızbilgi = await db.fetch(`kızistatistik${kişi.id}.${message.guild.id}`)
     const toplambilgi = await db.fetch(`toplamistatistik${kişi.id}.${message.guild.id}`)
     const codework = new Discord.MessageEmbed()
-    .setAuthor(kişi.username, kişi.avatarURL)
-    .setThumbnail(message.mentions.users.first().avatarURL())
+    .setAuthor(kişi.username, kişi.avatarURL({dynamic:true}))
+    .setThumbnail(message.mentions.users.first().avatarURL(({dynamic:true})))
     .setTimestamp()
     .setFooter(`${message.author.tag} Tarafından İstendi.`)
     .setDescription(`**Yetkilinin Bilgileri**
