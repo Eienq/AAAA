@@ -22,7 +22,7 @@ exports.run = async (client, message, args) => {
   let data = db.get("jkood."+message.guild.id+user.user.id)
   let isimler 
   if(data){
-   isimler = db.get("jkood."+message.guild.id+user.user.id).map(jkoodcommunity => `**${sayı++}. \`${jkoodcommunity.name}\` - \`${jkoodcommunity.cinsiyet}\`**`).slice(0, jkood.maxEskiİsim).join("\n")
+   isimler = db.get("jkood."+message.guild.id+user.user.id).map(jkoodcommunity => `**${sayı++}. \`${jkoodcommunity.name}\`**`).slice(0, jkood.maxEskiİsim).join("\n")
   } else {
        isimler = "`Eski İsim Kaydı Bulunamadı!`"
   }

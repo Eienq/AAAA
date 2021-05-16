@@ -41,9 +41,18 @@ let sayı = 1
   let data = db.get("jkood."+message.guild.id+user.user.id)
   let isimler 
   if(data){
-   isimler = db.get("jkood."+message.guild.id+user.user.id).map(jkoodcommunity => `**${sayı++}. \`${jkoodcommunity.name}\` - \`${jkoodcommunity.cinsiyet}\`**`).slice(0, jkood.maxEskiİsim).join("\n")
+   isimler = db.get("jkood."+message.guild.id+user.user.id).map(jkoodcommunity => `**${sayı++}. \`${jkoodcommunity.name}\`**`).slice(0, jkood.Eskiİsimler).join("\n")
   } else {
        isimler = "`Eski İsim Kaydı Yok!`"
+  }
+  
+   let sayı2 = 1
+  let data2 = db.get("jkood."+message.guild.id+user.user.id)
+  let katarih 
+  if(data2){
+   katarih = db.get("jkood."+message.guild.id+user.user.id).map(jkoodcommunity => `**${sayı2++}. \`${jkoodcommunity.tarih}\`**`).slice(0, jkood.KayitTarihi).join("\n")
+  } else {
+       katarih = "`Kayıt Tarihi Bulunamadı!`"
   }
   
     const embed = new Discord.MessageEmbed()
@@ -54,7 +63,8 @@ let sayı = 1
     .addField('Durum', mention.presence.status.replace('online', 'Çevrimiçi').replace('idle', 'Boşta').replace('dnd', 'Rahatsız Etmeyin').replace('offline', 'Çevrimdışı'))
     .addField(`Hesap Kuruluş Tarihi`, `${moment(kişi.user.createdAt).format(" DD/MMMM/YYYY ")}`, true)
     .addField(`Sunucuya Giriş Tarihi\n`, `${moment(kişi.joinedTimestamp).format('D/MMMM/YYYY')}`, true)
-    .addField(`İsimler\n`, `${isimler}`)
+    .addField(`Eski İsimler\n`, `${isimler}`)
+    .addField(`Sunucuya Kayıt Tarihi\n`, `${katarih}`)
     //.addField('Rozetler', `${rozetler ? mentionFlags : 'Yok'}`)
     //.addField('Roller', mentionMember.roles.cache.filter(a => a.name !== '@everyone').map(a => a).join(' ') ? mentionMember.roles.cache.filter(a => a.name !== '@everyone').map(a => a).join(' ') : 'Yok')
     .setFooter(`${message.author.tag} Tarafından İstendi.`)

@@ -35,14 +35,24 @@ exports.run = async (client, message, args) => {
   let data = db.get("jkood."+message.guild.id+user.user.id)
   let isimler 
   if(data){
-   isimler = db.get("jkood."+message.guild.id+user.user.id).map(jkoodcommunity => `**${sayı++}. \`${jkoodcommunity.name}\` - \`${jkoodcommunity.cinsiyet}\`**`).slice(0, jkood.maxEskiİsim).join("\n")
+   isimler = db.get("jkood."+message.guild.id+user.user.id).map(jkoodcommunity => `**${sayı++}. \`${jkoodcommunity.name}\`**`).slice(0, jkood.Eskiİsimler).join("\n")
   } else {
        isimler = "`Eski İsim Kaydı Bulunamadı!`"
   }
+    
+    let sayı2 = 1
+  let data2 = db.get("jkood."+message.guild.id+user.user.id)
+  let katarih 
+  if(data2){
+   katarih = db.get("jkood."+message.guild.id+user.user.id).map(jkoodcommunity => `**${sayı2++}. \`${jkoodcommunity.tarih}\`**`).slice(0, jkood.KayitTarihi).join("\n")
+  } else {
+       katarih = "`Kayıt Tarihi Bulunamadı!`"
+  }
+    
   db.push("jkood."+message.guild.id+user.user.id,{
     id: user.user.id,
     name: `${jkood.tag} ${nick} | ${yas}`,
-    tarih: Date.now(),
+    tarih: `${zaman.tarih(Date.now())}`,
     cinsiyet: "Erkek",
     kaydeden: message.author.id
   })

@@ -31,6 +31,23 @@ exports.run = async (client, message, args) => {
     setTimeout(function(){user.roles.remove(jkood.kayıtsızrol)},5000)
     user.setNickname(`${jkood.tag} ${nick} | ${yas}`)
     
+      let sayı = 1
+  let data = db.get("jkood."+message.guild.id+user.user.id)
+  let isimler 
+  if(data){
+   isimler = db.get("jkood."+message.guild.id+user.user.id).map(jkoodcommunity => `**${sayı++}. \`${jkoodcommunity.name}\`**`).slice(0, jkood.Eskiİsimler).join("\n")
+  } else {
+       isimler = "`Eski İsim Kaydı Bulunamadı!`"
+  }
+  db.push("jkood."+message.guild.id+user.user.id,{
+    id: user.user.id,
+    name: `${jkood.tag} ${nick} | ${yas}`,
+    tarih: Date.now(),
+    cinsiyet: "Kadın",
+    kaydeden: message.author.id
+  })
+    
+    
       const Embed = new Discord.MessageEmbed()
     .setAuthor("Kadın Üye Kaydı Yapıldı!")
     .addField(`Kayıt Edilen\n`, `${user}`)
