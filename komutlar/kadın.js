@@ -8,8 +8,7 @@ exports.run = async (client, message, args) => {
   const kayıtkanalı = await jkood.Kayıtkanal
   if(kayıtkanalı == null) return message.channel.send('');
   if (message.channel.id !== kayıtkanalı) return message.channel.send(`Kayıt İşlemlerini Sadece Ayarlanmış Kayıt Kanalından Yapabilirsiniz. (<#${kayıtkanalı}>)`);
-  if(!message.member.hasPermission(jkood.KayitYetkilisi)) {
-    return message.channel.send("Bu Komutu Kullanabilmek İçin Gerekli Yetkiye Sahip Değilsin!");
+  if(!message.member.roles.cache.has(jkood.KayitYetkilisi)) { return message.channel.send("Bu Komutu Kullanabilmek İçin Gerekli Yetkiye Sahip Değilsin!");
   } else {
   const erkekrol = await jkood.KadınRol
   const alınacakrol = await jkood.AlinacakRol
