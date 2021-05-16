@@ -14,7 +14,8 @@
     "request": "^2.88.2",
     "quick.db": "^7.1.2",
     "moment": "^2.29.1",
-    "moment-duration-format": "^2.3.2"
+    "moment-duration-format": "^2.3.2",
+    "useful-tools": "^0.2.6"
   },
   "engines": {
     "node": "12.x"

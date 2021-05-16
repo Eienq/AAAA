@@ -1,6 +1,7 @@
 const Discord = require("discord.js");
 const db = require('quick.db');
 const jkood = require('../jkood.json');
+const zaman = require("useful-tools")
 
 exports.run = async (client, message, args) => {
   
@@ -29,10 +30,19 @@ exports.run = async (client, message, args) => {
     setTimeout(function(){user.roles.remove(jkood.AlinacakRol)},4000)//EĞER ALINACAK ROL GİRMEDİYSENİZ BU KOD SATIRININ *BAŞINA* // BU İKİ İŞARETİ KOYUN.
     setTimeout(function(){user.roles.remove(jkood.kayıtsızrol)},5000)
     user.setNickname(`${jkood.tag} ${nick} | ${yas}`)
+  
+    db.push(`jk., ${message.guild.id} ${user.user.id}`,{
+    id: user.user.id,
+    name: `${jkood.tag} ${nick} | ${yas}`,
+    tarih: Date.now(),
+    cinsiyet: "Erkek",
+    kaydeden: message.author.id
+  })
     
       const embed = new Discord.MessageEmbed()
     .setAuthor("Erkek Üye Kaydı Yapıldı!")
     .addField(`Kayıt Edilen\n`, `${user}`)
+    .addField(`Kayıt Tarihi\n`, `${zaman.tarih(Date.now())}`)
     .addField(`Yetkili\n`, `${message.author}`)
     .setFooter("youtube.com/jkood")
     .setColor("BLUE")
