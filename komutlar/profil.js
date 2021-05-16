@@ -35,6 +35,9 @@ rozetler = true;
 .replace('BUGHUNTER_LEVEL_2', 'Bug Avcısı 2. Lvl')
 .replace('VERIFIED_BOT', 'Onaylı Bot');
 
+  let data = db.get(`jk.${message.guild.id}`)
+  var sayi = 1 
+  let isimler = data.filter(x => x.userID === kişi.id).map(x => `${sayi++}- \`• ${x.isim} | ${x.yas}\`  (<@&${x.role}>)\n`).join("\n")
   
     const embed = new Discord.MessageEmbed()
     .setAuthor(kişi.user.username, kişi.user.avatarURL({dynamic:true}))
@@ -44,6 +47,7 @@ rozetler = true;
     .addField('Durum', mention.presence.status.replace('online', 'Çevrimiçi').replace('idle', 'Boşta').replace('dnd', 'Rahatsız Etmeyin').replace('offline', 'Çevrimdışı'))
     .addField(`Hesap Kuruluş Tarihi`, `${moment(kişi.user.createdAt).format(" DD/MMMM/YYYY ")}`, true)
     .addField(`Sunucuya Giriş Tarihi\n`, `${moment(kişi.joinedTimestamp).format('D/MMMM/YYYY')}`, true)
+    .addField(`Kayıt Tarihi\n`, `${moment(kişi.joinedTimestamp).format('D/MMMM/YYYY')}`, true)
     //.addField('Rozetler', `${rozetler ? mentionFlags : 'Yok'}`)
     //.addField('Roller', mentionMember.roles.cache.filter(a => a.name !== '@everyone').map(a => a).join(' ') ? mentionMember.roles.cache.filter(a => a.name !== '@everyone').map(a => a).join(' ') : 'Yok')
     .setFooter(`${message.author.tag} Tarafından İstendi.`)

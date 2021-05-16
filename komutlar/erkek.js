@@ -31,8 +31,8 @@ exports.run = async (client, message, args) => {
     setTimeout(function(){user.roles.remove(jkood.kayıtsızrol)},5000)
     user.setNickname(`${jkood.tag} ${nick} | ${yas}`)
   
-    db.push(`jk., ${message.guild.id} ${user.user.id}`,{
-    id: user.user.id,
+    db.push(`jk.${message.guild.id}`, {
+    id: user.id,
     name: `${jkood.tag} ${nick} | ${yas}`,
     tarih: Date.now(),
     cinsiyet: "Erkek",
