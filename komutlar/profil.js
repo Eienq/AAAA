@@ -7,8 +7,9 @@ moment.locale("tr")
 exports.run = async(client, message, args) => {
   
   if(!message.member.hasPermission("ADMINISTRATOR")) return message.reply(`Bu Komutu Kullanabilmek İçin Yeterli Yetkiye Sahip Değilsin!`);
-  let kişi = message.mentions.members.first()
-  if(!kişi) return message.reply('Lütfen bir kullanıcı girin.')
+  let kişi = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
+  if(!kişi) return message.reply('Lütfen Bir Kullanıcı veya ID Girin.')
+  if (isNaN(kişi)) return message.channel.send("Lütfen Bir Geçerli ID Girin.");
   const user = message.guild.member(kişi)
   
   let mention = message.author;
