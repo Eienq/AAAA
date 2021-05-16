@@ -155,7 +155,7 @@ if (kurulus > 1296000000) kontrol = ' **Güvenli** '
 
 //HG MESAJI SON
 
-//OTO İSİM
+//OTOROL OTOİSİM
 
 client.on("guildMemberAdd", member => {
   var rol = jkood.otorol
@@ -163,28 +163,8 @@ client.on("guildMemberAdd", member => {
    member.setNickname("youtube.com/jkood")   
    })
 
-//OTO İSİM SON
+//OTOROL OTOİSİM SON
 
-//TAG SİSTEMİ
-
-client.on("userUpdate", async (oldUser, newUser) => {
-  if (oldUser.username !== newUser.username) {
-    let tag = jkood.tag;
-    let sunucu = jkood.sunucuid;
-    let kanal = jkood.taglog 
-    let rol = jkood.tagrol;
-    if (newUser.username.includes(tag) && !client.guilds.cache.get(sunucu).members.cache.get(newUser.id).roles.cache.has(rol)) {
-      client.channels.cache.get(kanal).send(`${newUser} **\`${tag}\`** tagını aldığı için <@&${rol}> rolünü kazandı!`)
-      client.guilds.cache.get(sunucu).members.cache.get(newUser.id).roles.add(rol)
-    } if (!newUser.username.includes(tag) && client.guilds.cache.get(sunucu).members.cache.get(newUser.id).roles.cache.has(rol)) {
-      client.guilds.cache.get(sunucu).members.cache.get(newUser.id).roles.remove(rol)
-      client.channels.cache.get(kanal).send(`${newUser} **\`${tag}\`** tagını çıkardığı için <@&${rol}> rolünü kaybetti!`)
-    }
-
-  }
-})
-
-//TAG SİSTEMİ
 
 //BOTU SESTE TUTMA
 
