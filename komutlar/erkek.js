@@ -60,7 +60,6 @@ exports.run = async (client, message, args) => {
       const embed = new Discord.MessageEmbed()
     .setAuthor("Erkek Üye Kaydı Yapıldı!")
     .addField(`Kayıt Edilen\n`, `${user}`)
-    .addField(`Kayıt Tarihi\n`, `${zaman.tarih(Date.now())}`)
     .addField(`Yetkili\n`, `${message.author}`)
     .setFooter("youtube.com/jkood")
     .setColor("BLUE")

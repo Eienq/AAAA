@@ -43,7 +43,7 @@ let sayı = 1
   if(data){
    isimler = db.get("jkood."+message.guild.id+user.user.id).map(jkoodcommunity => `**${sayı++}. \`${jkoodcommunity.name}\`**`).slice(0, jkood.Eskiİsimler).join("\n")
   } else {
-       isimler = "`Eski İsim Kaydı Yok!`"
+       isimler = "`Eski İsim Kaydı Bulunamadı!`"
   }
   
    let sayı2 = 1
@@ -64,7 +64,7 @@ let sayı = 1
     .addField(`Hesap Kuruluş Tarihi`, `${moment(kişi.user.createdAt).format(" DD/MMMM/YYYY ")}`, true)
     .addField(`Sunucuya Giriş Tarihi\n`, `${moment(kişi.joinedTimestamp).format('D/MMMM/YYYY')}`, true)
     .addField(`Eski İsimler\n`, `${isimler}`)
-    .addField(`Sunucuya Kayıt Tarihi\n`, `${katarih}`)
+    .addField(`Sunucuya Kayıt Tarihleri\n`, `${katarih}`)
     //.addField('Rozetler', `${rozetler ? mentionFlags : 'Yok'}`)
     //.addField('Roller', mentionMember.roles.cache.filter(a => a.name !== '@everyone').map(a => a).join(' ') ? mentionMember.roles.cache.filter(a => a.name !== '@everyone').map(a => a).join(' ') : 'Yok')
     .setFooter(`${message.author.tag} Tarafından İstendi.`)
