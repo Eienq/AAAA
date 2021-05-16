@@ -32,7 +32,7 @@ exports.run = async (client, message, args) => {
     user.setNickname(`${jkood.tag} ${nick} | ${yas}`)
   
     db.push(`jk.${message.guild.id}.${user.user.id}`, {
-    id: user.id,
+    id: user.user.id,
     name: `${jkood.tag} ${nick} | ${yas}`,
     tarih: Date.now(),
     cinsiyet: "Erkek",

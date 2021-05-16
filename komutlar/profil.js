@@ -9,6 +9,7 @@ exports.run = async(client, message, args) => {
   if(!message.member.hasPermission("ADMINISTRATOR")) return message.reply(`Bu Komutu Kullanabilmek İçin Yeterli Yetkiye Sahip Değilsin!`);
   let kişi = message.mentions.members.first()
   if(!kişi) return message.reply('Lütfen bir kullanıcı girin.')
+  const user = message.guild.member(kişi)
   
   let mention = message.author;
 if(message.mentions.members.first()) mention = message.mentions.members.first().user;
@@ -37,12 +38,21 @@ rozetler = true;
 .replace('VERIFIED_BOT', 'Onaylı Bot');
 
   let cssayı = 1
-  let data = db.get(`jk.${message.guild.id}.${kişi.user.id}`)
+  let data = db.get(`jk.${message.guild.id}.${user.user.id}`)
   let isimler 
   if(data){
-   isimler = db.get(`jk.${message.guild.id}`).map(mr => `**${cssayı++}. \`${mr.name}\` - \`${mr.cinsiyet}\`**`).slice(0, jkood.Eskiİsimler).join("\n")
+   isimler = db.get(`jk.${message.guild.id}.${user.user.id}`).map(mr => `**${cssayı++}. \`${mr.name}\` - \`${mr.cinsiyet}\`**`).slice(0, jkood.Eskiİsimler).join("\n")
   } else {
-   isimler = "`Eski İsim Kaydı Yok!`"
+   isimler = "`Eski İsim Bulunamadı`"
+  }
+  
+  let cssayı2 = 1
+  let data2 = db.get(`jk.${message.guild.id}.${user.user.id}`)
+  let isimler2
+  if(data){
+   isimler2 = db.get(`jk.${message.guild.id}.${user.user.id}`).map(mr => `**${cssayı2++}. \`${mr.tarih}\`**`).join("\n")
+  } else {
+   isimler2 = "`Kayıt Tarihi Bulunamadı`"
   }
   
     const embed = new Discord.MessageEmbed()
@@ -54,6 +64,7 @@ rozetler = true;
     .addField(`Hesap Kuruluş Tarihi`, `${moment(kişi.user.createdAt).format(" DD/MMMM/YYYY ")}`, true)
     .addField(`Sunucuya Giriş Tarihi\n`, `${moment(kişi.joinedTimestamp).format('D/MMMM/YYYY')}`, true)
     .addField(`İsimler\n`, `${isimler}`)
+    .addField(`Kayıt Tarihi\n`, `${isimler2}`)
     //.addField('Rozetler', `${rozetler ? mentionFlags : 'Yok'}`)
     //.addField('Roller', mentionMember.roles.cache.filter(a => a.name !== '@everyone').map(a => a).join(' ') ? mentionMember.roles.cache.filter(a => a.name !== '@everyone').map(a => a).join(' ') : 'Yok')
     .setFooter(`${message.author.tag} Tarafından İstendi.`)
