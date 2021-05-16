@@ -1,20 +1,23 @@
 const Discord = require('discord.js');
-const rdb = require('quick.db');
-const moment = require('moment');
+const db = require('quick.db');
+const jkood = require('../jkood.json');
+
 exports.run = async (client, message, args) => {
-let vipal = '816414164666941475' 
-if(!["816414327644094504"].some(role => message.member.roles.cache.get(role)) && (!message.member.hasPermission("ADMINISTRATOR"))) 
-  return message.channel.send(`Bu komutu kullanabilmek için ayarlanan kayıt yetkisine sahip olmalısınız!`).then(x => x.delete({timeout: 5000}));
+if(!message.member.hasPermission("ADMINISTRATOR")) return message.reply(`Bu Komutu Kullanabilmek İçin Yeterli Yetkiye Sahip Değilsin!`);
+  
   let member = message.mentions.members.first() || message.guild.members.cache.get(args[0])
-  if (!member) return message.channel.send('Bir üye etiketlemelisin.').then(x => x.delete({timeout: 5000}));
- member.roles.remove(vipal)
-  let embed = new Discord.MessageEmbed()
-  .setColor('RANDOM')
-  .setDescription(`${member} kişisi artık ${vipal}! .`)
+  if (!member) return message.reply('Lütfen Bir Kullanıcı veya ID Girin.')
+  if (!member.roles.cache.has(jkood.viprol)) return message.reply("Bu Kişi Zaten V.I.P Değil!")
+  let vip = jkood.viprol
+  
+ member.roles.remove(vip)
+  
+  const embed = new Discord.MessageEmbed()
+  .setColor('RED')
+  .setDescription(`**İşlem Başarılı** ${member} Kişisi Artık <@&${vip}> Değil!`)
   .setTimestamp()
- 
-message.react(client.emojiler.onay).catch();
-message.channel.send(embed).then(x => x.delete({timeout: 5000}));
+  .setFooter(`${message.author.tag} Tarafından İstendi.`)
+message.channel.send(embed)
 } 
 
 exports.conf = {
@@ -24,7 +27,7 @@ exports.conf = {
   permLevel: 0
 }
 exports.help = {
-  name: 'vip-al',
+  name: 'vipal',
   description: "Belirtilen üyeye kayıtsız rolü verir",
-  usage: 'vip-al @kişi'
+  usage: 'vip @kişi'
 }
