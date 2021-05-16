@@ -12,11 +12,14 @@ if(!message.member.hasPermission("ADMINISTRATOR")) return message.reply(`Bu Komu
   
  member.roles.remove(vip)
   
-  const embed = new Discord.MessageEmbed()
-  .setColor('RED')
-  .setDescription(`**İşlem Başarılı** ${member} Kişisi Artık <@&${vip}> Değil!`)
-  .setTimestamp()
-  .setFooter(`${message.author.tag} Tarafından İstendi.`)
+   const embed = new Discord.MessageEmbed()
+    .setAuthor("VIP Alma İşlemi Başarılı!")
+    .addField(`Vip Yetkisi Alınan\n`, `${member}`)
+    .addField(`Yetkili\n`, `${message.author}`)
+    .setFooter("youtube.com/jkood")
+    .setColor("BLUE")
+    .setThumbnail(member.user.avatarURL({dynamic:true}))  
+    .setTimestamp()  
 message.channel.send(embed)
 } 
 

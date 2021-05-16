@@ -13,10 +13,13 @@ if(!message.member.hasPermission("ADMINISTRATOR")) return message.reply(`Bu Komu
  member.roles.add(vip)
   
   const embed = new Discord.MessageEmbed()
-  .setColor('GREEN')
-  .setDescription(`**İşlem Başarılı** ${member} Kişisi Artık <@&${vip}>!`)
-  .setTimestamp()
-  .setFooter(`${message.author.tag} Tarafından İstendi.`)
+    .setAuthor("VIP Verme İşlemi Başarılı!")
+    .addField(`Vip Yapılan\n`, `${member}`)
+    .addField(`Yetkili\n`, `${message.author}`)
+    .setFooter("youtube.com/jkood")
+    .setColor("BLUE")
+    .setThumbnail(member.user.avatarURL({dynamic:true}))  
+    .setTimestamp()  
 message.channel.send(embed)
 } 
 
