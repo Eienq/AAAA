@@ -37,22 +37,13 @@ rozetler = true;
 .replace('BUGHUNTER_LEVEL_2', 'Bug Avcısı 2. Lvl')
 .replace('VERIFIED_BOT', 'Onaylı Bot');
 
-  let cssayı = 1
-  let data = db.get(`jk.${message.guild.id}.${user.user.id}`)
+let sayı = 1
+  let data = db.get("jkood."+message.guild.id+user.user.id)
   let isimler 
   if(data){
-   isimler = db.get(`jk.${message.guild.id}.${user.user.id}`).map(mr => `**${cssayı++}. \`${mr.name}\` - \`${mr.cinsiyet}\`**`).slice(0, jkood.Eskiİsimler).join("\n")
+   isimler = db.get("jkood."+message.guild.id+user.user.id).map(jkoodcommunity => `**${sayı++}. \`${jkoodcommunity.name}\` - \`${jkoodcommunity.cinsiyet}\`**`).slice(0, jkood.maxEskiİsim).join("\n")
   } else {
-   isimler = "`Eski İsim Bulunamadı`"
-  }
-  
-  let cssayı2 = 1
-  let data2 = db.get(`jk.${message.guild.id}.${user.user.id}`)
-  let isimler2
-  if(data){
-   isimler2 = db.get(`jk.${message.guild.id}.${user.user.id}`).map(mr => `**${cssayı2++}. \`${mr.tarih}\`**`).join("\n")
-  } else {
-   isimler2 = "`Kayıt Tarihi Bulunamadı`"
+       isimler = "`Eski İsim Kaydı Yok!`"
   }
   
     const embed = new Discord.MessageEmbed()
@@ -64,7 +55,6 @@ rozetler = true;
     .addField(`Hesap Kuruluş Tarihi`, `${moment(kişi.user.createdAt).format(" DD/MMMM/YYYY ")}`, true)
     .addField(`Sunucuya Giriş Tarihi\n`, `${moment(kişi.joinedTimestamp).format('D/MMMM/YYYY')}`, true)
     .addField(`İsimler\n`, `${isimler}`)
-    .addField(`Kayıt Tarihi\n`, `${isimler2}`)
     //.addField('Rozetler', `${rozetler ? mentionFlags : 'Yok'}`)
     //.addField('Roller', mentionMember.roles.cache.filter(a => a.name !== '@everyone').map(a => a).join(' ') ? mentionMember.roles.cache.filter(a => a.name !== '@everyone').map(a => a).join(' ') : 'Yok')
     .setFooter(`${message.author.tag} Tarafından İstendi.`)
