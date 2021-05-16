@@ -26,11 +26,9 @@ exports.run = async (client, message, args) => {
       if(!nick) return message.channel.send("Lütfen Bir İsim Girin.")
       if (isNaN(yas)) return message.channel.send("Lütfen Bir Yaş Girin.");
     setTimeout(function(){user.roles.add(jkood.ErkekRol)},3000)
-    setTimeout(function(){user.roles.remove(jkood.AlinacakRol)},4000) //EĞER ALINACAK ROL GİRMEDİYSENİZ BU KOD SATIRININ *BAŞINA* // BU İKİ İŞARETİ KOYUN.
+    setTimeout(function(){user.roles.remove(jkood.AlinacakRol)},4000)//EĞER ALINACAK ROL GİRMEDİYSENİZ BU KOD SATIRININ *BAŞINA* // BU İKİ İŞARETİ KOYUN.
+    setTimeout(function(){user.roles.remove(jkood.kayıtsızrol)},5000)
     user.setNickname(`${jkood.tag} ${nick} | ${yas}`)
-    member.voice.setChannel('815676491991875626');
-    
-    
     
       const embed = new Discord.MessageEmbed()
     .setAuthor("Erkek Üye Kaydı Yapıldı!")
