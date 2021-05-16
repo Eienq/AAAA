@@ -1,13 +1,14 @@
 const Discord = require("discord.js");
 exports.run = (client, message, args) => {
-    if (!message.member.hasPermissions("MOVE_MEMBERS")) return message.channel.send(":no_entry: Bu komutu kullana bilmek için `Üyeleri taşı` yetkisine sahip olmanız gerek")
+    if (!message.member.hasPermission("MOVE_MEMBERS")) return message.reply("Bu Komutu Kullanabilmek İçin Gerekli Yetkiye Sahip Değilsin!")
     let kanal = args[1];
-    let kullanici = message.mentions.members.first()
-    if (!kanal) return message.channel.send("Kanal belirtmedin")
-    if (!kullanici) return message.channel.send("Kullanıcıyı belirtmedin")
-    kullanici.setVoiceChannel(`${kanal}`)
+    let kişi = message.mentions.members.first()
+    const user = message.guild.member(kişi)
+    if (!kanal) return message.reply("Kanal belirtmedin")
+    if (!kişi) return message.reply("Kullanıcıyı belirtmedin")
+    kişi.set.voice.channel(`${kanal}`)
         .then(() =>
-            message.channel.send(`${kullanici} <#${kanal}> adlı kanala taşındı`))
+            message.channel.send(`${kişi} <#${kanal}> adlı kanala taşındı`))
         .catch(console.error);
 }
 exports.conf = {
