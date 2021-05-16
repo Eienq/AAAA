@@ -4,15 +4,15 @@ const ayarlar = require('../ayarlar.json');
 exports.run = (client, message, args) => {
 
 if(!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send(':x: bu özelliği kullanabilmek için `Yönetici` yetkisine sahip olmalısınız')
-   let kişi = message.mentions.users.first();
+   let user = message.mentions.users.first();
    if (message.mentions.users.size < 1) return message.reply('Lütfen İstatistiklerini Sıfırlayacak Kişiyi Belirt.');
-     if (db.has(`toplamistatistik${kişi.id}`) === false) return message.reply("Belirtilen Kişinin İstatistikleri Zaten 0 Görünüyor.")
+     if (db.has("jkood."+message.guild.id+user.user.id))) === false) return message.reply("Belirtilen Kişinin İstatistikleri Zaten 0 Görünüyor.")
 
 
    message.reply('Belirtilen Kişinin İstatistikleri Sıfırlanmıştır.')
-db.delete(`toplamistatistik${kişi.id}`)
-db.delete(`erkekistatistik${kişi.id}`)
-db.delete(`kızistatistik${kişi.id}`)  
+db.delete(`toplamistatistik${user.id}`)
+db.delete(`erkekistatistik${user.id}`)
+db.delete(`kızistatistik${user.id}`)  
 
 }; 
 
