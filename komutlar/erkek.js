@@ -49,6 +49,15 @@ exports.run = async (client, message, args) => {
        katarih = "`Kayıt Tarihi Bulunamadı!`"
   }
     
+    let sayı3 = 1
+  let data3 = db.get("jkood."+message.guild.id+user.user.id)
+  let kayetkili
+  if(data3){
+   kayetkili = db.get("jkood."+message.guild.id+user.user.id).map(jkoodcommunity => `**${sayı3++}. \`<@${jkoodcommunity.kaydeden}>\`**`).slice(0, jkood.kayitedenler).join("\n")
+  } else {
+       kayetkili = "`Kayıt Edenler Bulunamadı!`"
+  }
+    
   db.push("jkood."+message.guild.id+user.user.id,{
     id: user.user.id,
     name: `${jkood.tag} ${nick} | ${yas}`,

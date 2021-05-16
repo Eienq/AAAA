@@ -55,6 +55,15 @@ let sayı = 1
        katarih = "`Kayıt Tarihi Bulunamadı!`"
   }
   
+  let sayı3 = 1
+  let data3 = db.get("jkood."+message.guild.id+user.user.id)
+  let kayetkili
+  if(data3){
+   kayetkili = db.get("jkood."+message.guild.id+user.user.id).map(jkoodcommunity => `**${sayı3++}. \`${jkoodcommunity.kaydeden}\`**`).slice(0, jkood.kayitedenler).join("\n")
+  } else {
+       kayetkili = "`Kayıt Edenler Bulunamadı!`"
+  }
+  
     const embed = new Discord.MessageEmbed()
     .setAuthor(kişi.user.username, kişi.user.avatarURL({dynamic:true}))
     .setThumbnail(kişi.user.avatarURL(({dynamic:true})))
@@ -65,6 +74,7 @@ let sayı = 1
     .addField(`Sunucuya Giriş Tarihi\n`, `${moment(kişi.joinedTimestamp).format('D/MMMM/YYYY')}`, true)
     .addField(`Eski İsimler\n`, `${isimler}`)
     .addField(`Sunucuya Kayıt Tarihleri\n`, `${katarih}`)
+    .addField(`Kayıt Edenler\n`, `${kayetkili}`)
     //.addField('Rozetler', `${rozetler ? mentionFlags : 'Yok'}`)
     //.addField('Roller', mentionMember.roles.cache.filter(a => a.name !== '@everyone').map(a => a).join(' ') ? mentionMember.roles.cache.filter(a => a.name !== '@everyone').map(a => a).join(' ') : 'Yok')
     .setFooter(`${message.author.tag} Tarafından İstendi.`)
