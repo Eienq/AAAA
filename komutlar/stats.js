@@ -13,6 +13,7 @@ if(!args[0]) {
     .setAuthor(message.author.username, message.author.avatarURL({dynamic:true}))
     .setThumbnail(message.author.avatarURL({dynamic:true}))
     .setTimestamp()
+    .setColor("BLUE")
     .setFooter(`${message.author.tag} Tarafından İstendi.`)
     .setDescription(`**Yetkilinin İstatistikleri**
     **▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬**
@@ -29,6 +30,7 @@ if(!args[0]) {
     .setAuthor(kişi.username, kişi.avatarURL({dynamic:true}))
     .setThumbnail(message.mentions.users.first().avatarURL(({dynamic:true})))
     .setTimestamp()
+    .setColor("BLUE")
     .setFooter(`${message.author.tag} Tarafından İstendi.`)
     .setDescription(`**Yetkilinin Bilgileri**
     **▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬**
