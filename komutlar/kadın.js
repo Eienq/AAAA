@@ -28,6 +28,18 @@ exports.run = async (client, message, args) => {
     setTimeout(function(){user.roles.remove(jkood.kayıtsızrol)},4000)
     user.setNickname(`${jkood.tag} ${nick} | ${yas}`)
     
+    if(jkood.kızdiger){
+    jkood.kızdiger.map(async youtubejkood => {
+    await user.roles.add(youtubejkood)
+  })
+}
+ 
+    if(jkood.kızalinacakdiger){
+    jkood.kızalinacakdiger.map(async youtubejkood => {
+    await user.roles.remove(youtubejkood)
+  })
+}
+    
       let sayı = 1
   let data = db.get("jkood."+message.guild.id+user.user.id)
   let isimler 
