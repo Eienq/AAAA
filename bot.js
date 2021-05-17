@@ -158,7 +158,7 @@ if (kurulus > 1296000000) kontrol = ' **Güvenli** '
 //OTOROL OTOİSİM
 
 client.on("guildMemberAdd", member => {
-  var rol = jkood.otorol
+  var rol = jkood.kayıtsızrol
    member.roles.add(rol)
    member.setNickname("youtube.com/jkood")   
    })

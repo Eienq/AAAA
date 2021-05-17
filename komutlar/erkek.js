@@ -11,9 +11,7 @@ exports.run = async (client, message, args) => {
   if(!message.member.roles.cache.has(jkood.KayitYetkilisi)) { return message.channel.send("Bu Komutu Kullanabilmek İçin Gerekli Yetkiye Sahip Değilsin!");
   } else {
   const erkekrol = await jkood.ErkekRol
-  const alınacakrol = await jkood.AlinacakRol
   if(!erkekrol) return message.reply(`Erkek Rolü Ayarlanmamış!`)
-  //if(!alınacakrol) return message.reply(`Alınacak Rol Ayarlanmamış!`) BURADAKİ // BU İŞARETLERİ SİLERSENİZ ALINACAK ROL GİREREK KULLANMAYA BAŞLARSINIZ. EĞER SİLMESSENİZ ALINACAK ROL GİRMENİZE GEREK KALMAZ.
     
     let member = message.mentions.users.first() || client.users.cache.get(args.join(' '))
       if(!member) return message.reply("Lütfen Bir Kullanıcı Girin.")
@@ -26,9 +24,8 @@ exports.run = async (client, message, args) => {
     const yas = args[2];
       if(!nick) return message.channel.send("Lütfen Bir İsim Girin.")
       if (isNaN(yas)) return message.channel.send("Lütfen Bir Yaş Girin.");
-    setTimeout(function(){user.roles.add(jkood.ErkekRol)},3000)
-    setTimeout(function(){user.roles.remove(jkood.AlinacakRol)},4000)//EĞER ALINACAK ROL GİRMEDİYSENİZ BU KOD SATIRININ *BAŞINA* // BU İKİ İŞARETİ KOYUN.
-    setTimeout(function(){user.roles.remove(jkood.kayıtsızrol)},5000)
+    setTimeout(function(){user.roles.add(jkood.ErkekRol)},3000) //EĞER ALINACAK ROL GİRMEDİYSENİZ BU KOD SATIRININ *BAŞINA* // BU İKİ İŞARETİ KOYUN.
+    setTimeout(function(){user.roles.remove(jkood.kayıtsızrol)},4000)
     user.setNickname(`${jkood.tag} ${nick} | ${yas}`)
   
     let sayı = 1

@@ -7,13 +7,11 @@ exports.run = async (client, message, args) => {
   const kayıtkanalı = await jkood.Kayıtkanal
   if(kayıtkanalı == null) return message.channel.send('');
   if (message.channel.id !== kayıtkanalı) return message.channel.send(`Kayıt İşlemlerini Sadece Ayarlanmış Kayıt Kanalından Yapabilirsiniz. (<#${kayıtkanalı}>)`);
-  if(!message.member.hasPermission(jkood.KayitYetkilisi)) {
+  if(!message.member.roles.cache.has(jkood.KayitYetkilisi)) {
     return message.channel.send("Bu Komutu Kullanabilmek İçin Gerekli Yetkiye Sahip Değilsin!");
   } else {
   const erkekrol = await jkood.CinsiyetsizKayıtVerilecekRol
-  const alınacakrol = await jkood.AlinacakRol
-  if(!erkekrol) return message.reply(`Erkek Rolü Ayarlanmamış!`)
-  //if(!alınacakrol) return message.reply(`Alınacak Rol Ayarlanmamış!`) BURADAKİ // BU İŞARETLERİ SİLERSENİZ ALINACAK ROL GİREREK KULLANMAYA BAŞLARSINIZ. EĞER SİLMESSENİZ ALINACAK ROL GİRMENİZE GEREK KALMAZ.
+  if(!erkekrol) return message.reply(`Üye Rolü Ayarlanmamış!`)
     
     let member = message.mentions.users.first() || client.users.cache.get(args.join(' '))
       if(!member) return message.channel.send("Lütfen Bir Kullanıcı Girin.")
@@ -26,7 +24,7 @@ exports.run = async (client, message, args) => {
       if(!nick) return message.channel.send("Lütfen Bir İsim Girin.")
       if (isNaN(yas)) return message.channel.send("Lütfen Bir Yaş Girin.");
     setTimeout(function(){user.roles.add(jkood.CinsiyetsizKayıtVerilecekRol)},3000)
-    setTimeout(function(){user.roles.remove(jkood.AlinacakRol)},4000) //EĞER ALINACAK ROL GİRMEDİYSENİZ BU KOD SATIRININ *BAŞINA* // BU İKİ İŞARETİ KOYUN.
+    setTimeout(function(){user.roles.remove(jkood.kayıtsızrol)},4000) //EĞER ALINACAK ROL GİRMEDİYSENİZ BU KOD SATIRININ *BAŞINA* // BU İKİ İŞARETİ KOYUN.
     user.setNickname(`${jkood.tag} ${nick} | ${yas}`)
     
       const embed = new Discord.MessageEmbed()
