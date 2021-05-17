@@ -14,6 +14,8 @@ if(kişi.id === client.user.id)return message.reply('Botu Kayıtsıza Atamazsın
 if(kişi.id === message.guild.OwnerID) return message.reply('Sunucu Sahibini Kayıtsıza Atamazsın. Lütfen Geçerli Bir Kullanıcı Gir.');
   const user = message.guild.member(kişi)
   if (user.roles.cache.has(kayıtsız)) return message.reply("Bu Kişi Zaten Kayıtsız!")
+  
+  user.setNickname("")
 
 const embed = new Discord.MessageEmbed()
 .setAuthor("Kayıtsıza Atma İşlemi Başarılı!")
