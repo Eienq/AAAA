@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-const jkood = require('../jkood.json');
+const jkood = require('../jkood.js');
 
 exports.run = async(client, message, args) => {
 if(!message.member.hasPermission(jkood.KayitYetkilisi)) return message.channel.send("Bu Komutu Kullanabilmek İçin Gerekli Yetkiye Sahip Değilsin!");

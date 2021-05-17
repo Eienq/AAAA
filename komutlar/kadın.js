@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const db = require('quick.db');
-const jkood = require('../jkood.json');
+const jkood = require('../jkood.js');
 const zaman = require("useful-tools")
 
 exports.run = async (client, message, args) => {
@@ -11,7 +11,7 @@ exports.run = async (client, message, args) => {
   if(!message.member.roles.cache.has(jkood.KayitYetkilisi)) { return message.channel.send("Bu Komutu Kullanabilmek İçin Gerekli Yetkiye Sahip Değilsin!");
   } else {
   const erkekrol = await jkood.KadınRol
-  if(!erkekrol) return message.reply(`Erkek Rolü Ayarlanmamış!`)
+  if(!erkekrol) return message.reply(`Kadın Rolü Ayarlanmamış!`)
     
     let member = message.mentions.users.first() || client.users.cache.get(args.join(' '))
       if(!member) return message.channel.send("Lütfen Bir Kullanıcı Girin.")

@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const db = require('quick.db');
-const jkood = require('../jkood.json');
+const jkood = require('../jkood.js');
 
 exports.run = async (client, message, args) => {
 
