@@ -1,6 +1,5 @@
 const Discord = require('discord.js')
 const db = require('quick.db')
-const ayarlar = require('../ayarlar.json')
 
 exports.run = async (client, message, member) => {
 if(!message.member.hasPermission("ADMINISTRATOR")) return message.reply(`Bu Komutu Kullanabilmek İçin Yeterli Yetkiye Sahip Değilsin!`);

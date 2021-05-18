@@ -1,6 +1,5 @@
 const Discord = require('discord.js');
 const db = require('quick.db') 
-const ayarlar = require('../ayarlar.json');
 exports.run = (client, message, args) => {
 
 if(!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send(':x: bu özelliği kullanabilmek için `Yönetici` yetkisine sahip olmalısınız')

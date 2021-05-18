@@ -1,6 +1,7 @@
 const jkood = {
      
   prefix: "d!",
+  sahip: "536470606166622208",
   
   KayitYetkilisi: "814469200671932427", //BURAYA KAYIT YETKİLİSİ GİRİLECEK
   CinsiyetsizKayıtVerilecekRol: "842126054084444180", //BURAYA NORMAL KAYITTA VERİLECEK ÜYE ROLÜ GİRİLECEK

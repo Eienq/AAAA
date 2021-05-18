@@ -5,7 +5,6 @@ const db = require('quick.db');
 const moment = require('moment')
 const express = require('express');
 const jkood = require('./jkood.js');
-const ayarlar = require('./ayarlar.json');
 const app = express();
 app.get("/", (request, response) => {
 response.sendStatus(200);
@@ -118,7 +117,7 @@ client.elevation = message => {
     let permlvl = 0;
     if (message.member.hasPermission("BAN_MEMBERS")) permlvl = 2;
     if (message.member.hasPermission("ADMINISTRATOR")) permlvl = 3;
-    if (message.author.id === ayarlar.sahip) permlvl = 4;
+    if (message.author.id === jkood.sahip) permlvl = 4;
     return permlvl;
 };
 client.login(process.env.TOKEN)
