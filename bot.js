@@ -22,9 +22,9 @@ client.on('ready', async () => {
     client.appInfo = await client.fetchApplication();
   }, 600);
   
- client.user.setActivity(`discord.gg/codework`, { type:'WATCHING' })
+ client.user.setActivity(`youtube.com/jkood`, { type:'WATCHING' })
   
-  console.log("CodeWork Akıyor!!")
+  console.log("youtube.com/jkood Bot Başladı")
 });
 
 const log = message => {
