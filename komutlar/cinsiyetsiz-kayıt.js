@@ -24,7 +24,7 @@ exports.run = async (client, message, args) => {
       if(!nick) return message.channel.send("Lütfen Bir İsim Girin.")
       if (isNaN(yas)) return message.channel.send("Lütfen Bir Yaş Girin.");
     setTimeout(function(){user.roles.add(jkood.CinsiyetsizKayıtVerilecekRol)},3000)
-    setTimeout(function(){user.roles.remove(jkood.kayıtsızrol)},4000) //EĞER ALINACAK ROL GİRMEDİYSENİZ BU KOD SATIRININ *BAŞINA* // BU İKİ İŞARETİ KOYUN.
+    setTimeout(function(){user.roles.remove(jkood.kayıtsızrol)},4000)
     user.setNickname(`${jkood.tag} ${nick} | ${yas}`)
     
       const embed = new Discord.MessageEmbed()

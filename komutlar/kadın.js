@@ -24,7 +24,7 @@ exports.run = async (client, message, args) => {
     const yas = args[2];
       if(!nick) return message.channel.send("Lütfen Bir İsim Girin.")
       if (isNaN(yas)) return message.channel.send("Lütfen Bir Yaş Girin.");
-    setTimeout(function(){user.roles.add(jkood.KadınRol)},3000) //EĞER ALINACAK ROL GİRMEDİYSENİZ BU KOD SATIRININ *BAŞINA* // BU İKİ İŞARETİ KOYUN.
+    setTimeout(function(){user.roles.add(jkood.KadınRol)},3000)
     setTimeout(function(){user.roles.remove(jkood.kayıtsızrol)},4000)
     user.setNickname(`${jkood.tag} ${nick} | ${yas}`)
     
@@ -56,6 +56,15 @@ exports.run = async (client, message, args) => {
    katarih = db.get("jkood."+message.guild.id+user.user.id).map(jkoodcommunity => `**${sayı2++}. \`${jkoodcommunity.tarih}\`**`).slice(0, jkood.KayitTarihi).join("\n")
   } else {
        katarih = "`Kayıt Tarihi Bulunamadı!`"
+  }
+    
+    let sayı3 = 1
+  let data3 = db.get("jkood."+message.guild.id+user.user.id)
+  let kayetkili
+  if(data3){
+   kayetkili = db.get("jkood."+message.guild.id+user.user.id).map(jkoodcommunity => `**${sayı3++}. \`<@${jkoodcommunity.kaydeden}>\`**`).slice(0, jkood.kayitedenler).join("\n")
+  } else {
+       kayetkili = "`Kayıt Edenler Bulunamadı!`"
   }
     
   db.push("jkood."+message.guild.id+user.user.id,{

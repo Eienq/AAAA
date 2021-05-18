@@ -77,7 +77,7 @@ let sayı = 1
     .addField(`Sunucuya Kayıt Tarihleri\n`, `${katarih}`)
     .addField(`Kayıt Edenler\n`, `${kayetkili}`)
     //.addField('Rozetler', `${rozetler ? mentionFlags : 'Yok'}`)
-    //.addField('Roller', mentionMember.roles.cache.filter(a => a.name !== '@everyone').map(a => a).join(' ') ? mentionMember.roles.cache.filter(a => a.name !== '@everyone').map(a => a).join(' ') : 'Yok')
+    .addField('Roller', mentionMember.roles.cache.filter(a => a.name !== '@everyone').map(a => a).join(' ') ? mentionMember.roles.cache.filter(a => a.name !== '@everyone').map(a => a).join(' ') : 'Yok')
     .setFooter(`${message.author.tag} Tarafından İstendi.`)
     message.channel.send(embed)
 };

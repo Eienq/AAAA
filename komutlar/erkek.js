@@ -24,7 +24,7 @@ exports.run = async (client, message, args) => {
     const yas = args[2];
       if(!nick) return message.channel.send("Lütfen Bir İsim Girin.")
       if (isNaN(yas)) return message.channel.send("Lütfen Bir Yaş Girin.");
-    setTimeout(function(){user.roles.add(jkood.ErkekRol)},3000) //EĞER ALINACAK ROL GİRMEDİYSENİZ BU KOD SATIRININ *BAŞINA* // BU İKİ İŞARETİ KOYUN.
+    setTimeout(function(){user.roles.add(jkood.ErkekRol)},3000)
     setTimeout(function(){user.roles.remove(jkood.kayıtsızrol)},4000)
     user.setNickname(`${jkood.tag} ${nick} | ${yas}`)
     
