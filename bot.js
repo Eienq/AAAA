@@ -170,7 +170,7 @@ client.on("guildMemberAdd", member => {
 
 client.on("ready", async () => {
   console.log("Bot Başarıyla Ses Kanalına Bağlandı")
-  let botVoiceChannel = client.channels.cache.get("815676491991875626");
+  let botVoiceChannel = client.channels.cache.get("844183238083608606");
   if (botVoiceChannel) botVoiceChannel.join().catch(err => console.error("Bot ses kanalına bağlanırken bir hata oluştu!"));
 });
 

@@ -1,5 +1,6 @@
 const Discord = require("discord.js");
 const ayarlar = require('../ayarlar.json');
+const jkood = require('../jkood.js');
 let talkedRecently = new Set();
 
 module.exports = message => {
@@ -12,8 +13,8 @@ module.exports = message => {
   }, 2500);
   let client = message.client;
   if (message.author.bot) return;
-  if (!message.content.startsWith(ayarlar.prefix)) return;
-  let command = message.content.split(' ')[0].slice(ayarlar.prefix.length);
+  if (!message.content.startsWith(jkood.prefix)) return;
+  let command = message.content.split(' ')[0].slice(jkood.prefix.length);
   let params = message.content.split(' ').slice(1);
   let perms = client.elevation(message);
   let cmd;
